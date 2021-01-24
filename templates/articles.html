@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block body %}
+<h2>Articles</h2>
+<hr>
+
+{% if articles %}
+<form action="/search" method = "post">
+  <div class="form-group has-feedback">
+    <label for="search" class="sr-only">Search</label>
+    <input type="text" name="keyword" id="search" placeholder="search">
+    <button type="submit" class="btn btn-info btn-sm">Search</button>
+  </div>
+</form>
+
+<div class="list-group">
+  {% for article in articles %}
+  <li class = "list-group-item list-group-item-action"><a href="/article/{{article.id}}">{{article.title}}</a></li>
+  {% endfor %}
+  
+  </div>
+
+{% else %}
+<div class = "alert alert-warning">Bu blogta henüz makale bulunmamaktadır..</div>
+{% endif %}
+
+{% endblock body %}
+
